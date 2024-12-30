@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Dashboard</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.1/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.1/js/select2.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f8fb;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #fff;
+            height: 100vh;
+            position: fixed;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar ul li {
+            padding: 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #f1f1f1;
+        }
+
+        .sidebar ul li:hover {
+            background-color: #f1f1f1;
+        }
+
+        .sidebar ul li i {
+            margin-right: 10px;
+        }
+
+        .main {
+            margin-left: 250px;
+            padding: 20px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .chart {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .transaction-history {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .transaction-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #f1f1f1;
+        }
+
+        .transaction-item:last-child {
+            border-bottom: none;
+        }
+
+        .shopping-section {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .shopping-section select {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <ul>
+            <li><i class="fas fa-home"></i> Dashboard</li>
+            <li><i class="fas fa-file-invoice-dollar"></i> Bills & Payments</li>
+            <li><i class="fas fa-chart-line"></i> Expenses <span style="color: red; font-size: 12px; margin-left: 5px;">New</span></li>
+            <li><i class="fas fa-cog"></i> Settings</li>
+            <li><i class="fas fa-question-circle"></i> Get Help</li>
+        </ul>
+    </div>
+
+    <div class="main">
+        <div class="card">
+            <span>Food & Drinks</span>
+            <span>₹18,046</span>
+        </div>
+        <div class="card">
+            <span>Bills & Payments</span>
+            <span>₹46,24</span>
+        </div>
+        <div class="card">
+            <span>Entertainment</span>
+            <span>₹2,376</span>
+        </div>
+
+        <div class="chart">
+            <h3>Spending Overview</h3>
+            <canvas id="spendingChart" style="width: 100%; height: 300px;"></canvas>
+        </div>
+
+        <div class="transaction-history">
+            <h3>Your Transaction History</h3>
+            <div class="transaction-item">
+                <span>Burger King</span>
+                <span>₹3,197</span>
+            </div>
+            <div class="transaction-item">
+                <span>Arun Payment</span>
+                <span style="color: green;">₹20,000</span>
+            </div>
+            <div class="transaction-item">
+                <span>PVR Forum</span>
+                <span>₹2,187</span>
+            </div>
+            <div class="transaction-item">
+                <span>McDonald's, HSR</span>
+                <span>₹3,103</span>
+            </div>
+        </div>
+
+        <div class="shopping-section">
+            <h3>Shopping Filter</h3>
+            <select class="shopping-dropdown" multiple="multiple">
+                <option value="electronics">Electronics</option>
+                <option value="clothing">Clothing</option>
+                <option value="groceries">Groceries</option>
+                <option value="accessories">Accessories</option>
+            </select>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Initialize Select2 Dropdown
+            $('.shopping-dropdown').select2({
+                placeholder: 'Select categories',
+                allowClear: true
+            });
+
+            // Initialize Chart.js
+            const ctx = document.getElementById('spendingChart').getContext('2d');
+            const spendingChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Nov 08', 'Nov 12', 'Nov 16', 'Nov 20', 'Nov 24', 'Nov 28', 'Dec 02', 'Dec 06'],
+                    datasets: [
+                        {
+                            label: 'Food & Drinks',
+                            data: [5000, 7000, 6000, 8000, 10000, 7500, 8500, 9500],
+                            borderColor: '#ff6384',
+                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                            fill: true
+                        },
+                        {
+                            label: 'Shopping',
+                            data: [3000, 4000, 5000, 7000, 8000, 6000, 7000, 6500],
+                            borderColor: '#36a2eb',
+                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                            fill: true
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
