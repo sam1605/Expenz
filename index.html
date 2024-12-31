@@ -13,200 +13,7 @@
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f8fb;
-        }
-
-        .sidebar {
-            width: 80px;
-            background-color: #fff;
-            height: 100vh;
-            position: fixed;
-            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            transition: width 0.3s ease;
-        }
-
-        .sidebar:hover {
-            width: 250px;
-        }
-
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .sidebar ul li {
-            padding: 15px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            border-bottom: 1px solid #f1f1f1;
-            white-space: nowrap;
-        }
-
-        .sidebar ul li:hover {
-            background-color: #f1f1f1;
-        }
-
-        .sidebar ul li i {
-            margin-right: 10px;
-            min-width: 40px;
-            text-align: center;
-        }
-
-        .sidebar ul li span {
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .sidebar:hover ul li span {
-            opacity: 1;
-        }
-
-        .main {
-            margin-left: 80px;
-            padding: 20px;
-            transition: margin-left 0.3s ease;
-        }
-
-        .sidebar:hover~.main {
-            margin-left: 250px;
-        }
-
-        .card {
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .chart {
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-
-        .transaction-history {
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-        }
-
-        .transaction-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px 0;
-            border-bottom: 1px solid #f1f1f1;
-        }
-
-        .transaction-item:last-child {
-            border-bottom: none;
-        }
-
-        .shopping-section {
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            margin-top: 20px;
-        }
-
-        .shopping-section select {
-            width: 100%;
-        }
-
-        .shopping-section {
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin-top: 20px;
-}
-
-h3 {
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-    color: #333;
-}
-
-.owl-carousel {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.owl-carousel .item {
-    background-color: #f4f8fb;
-    border-radius: 8px;
-    padding: 20px;
-    text-align: center;
-    font-size: 1rem;
-    color: #333;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin: 10px;
-    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
-}
-
-.owl-carousel .item:hover {
-    transform: scale(1.05);
-    background-color: #e9eff7;
-}
-
-.owl-carousel .item .category {
-    display: block;
-    font-weight: 600;
-    color: #555;
-}
-
-.owl-carousel .owl-nav button {
-    background-color: #fff;
-    border: none;
-    padding: 10px;
-    border-radius: 50%;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.owl-carousel .owl-nav button:hover {
-    background-color: #f1f1f1;
-}
-
-.owl-carousel .owl-nav .owl-prev {
-    left: -35px;
-}
-
-.owl-carousel .owl-nav .owl-next {
-    right: -35px;
-}
-
-@media (max-width: 600px) {
-    .owl-carousel .item {
-        font-size: 0.9rem;
-        padding: 15px;
-    }
-}
-
-@media (max-width: 1000px) {
-    .owl-carousel .item {
-        font-size: 1rem;
-        padding: 18px;
-    }
-}
-
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
@@ -223,37 +30,13 @@ h3 {
 
     <div class="main">
         <div class="shopping-section">
-            <h3>Shopping Filter</h3>
+            <h3>Accounts</h3>
             <div class="owl-carousel">
                 <div class="item">
                     <span>Electronics</span>
                 </div>
-                <div class="item">
-                    <span>Clothing</span>
-                </div>
-                <div class="item">
-                    <span>Groceries</span>
-                </div>
-                <div class="item">
-                    <span>Accessories</span>
-                </div>
             </div>
         </div>
-
-        <div class="card">
-            <span>Food & Drinks</span>
-            <span>₹18,046</span>
-        </div>
-        <div class="card">
-            <span>Bills & Payments</span>
-            <span>₹46,24</span>
-        </div>
-        <div class="card">
-            <span>Entertainment</span>
-            <span>₹2,376</span>
-        </div>
-
-
         <div class="chart">
             <h3>Spending Overview</h3>
             <canvas id="spendingChart" style="width: 100%; height: 300px;"></canvas>
@@ -334,10 +117,10 @@ h3 {
 
             // Initialize Owl Carousel
             $('.owl-carousel').owlCarousel({
-        loop: true,
+        loop: false,
         margin: 10,
         nav: true,
-        navText: ['<', '>'],
+        navText: ['Previous', 'Next'],
         responsive: {
             0: {
                 items: 1
